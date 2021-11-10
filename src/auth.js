@@ -6,7 +6,7 @@ const LocalStrategy = require('passport-local').Strategy;
 const users =[{
     _id: 1,
     username: 'adm',
-    password:'$2a$12$2XB0I1QDMSRLuR0r4e3sWeFIJhrGfvZr6WyR6aXkRb2/g6qDomN02', // 123
+    password:'$2a$12$VhIFIMBv1FzTytifR/RANeopQkFsvPE6fjSrkJ.DhKg.bdalDGlCe', // 123
     email:'adm@gmail.com'
  
 }];
@@ -15,7 +15,7 @@ function findUser(username){
     return users.find(item => item.username === username);
 }
  
-function findUserById(ID) {
+function findUserById(id) {
     return users.find(item =>  item._id === id);
 }
  
@@ -29,7 +29,7 @@ module.exports = (passport) => {
     // Uma vez que as informações  estão gravadas, posso recuperá-las
     passport.deserializeUser((id, done)=>{
 try {
-    const user = findUserById(ID);
+    const user = findUserById(id);
     done(null, user);
   } catch (error) {
      console.log(error);
@@ -47,7 +47,7 @@ try {
            
             const isValid = bcrypt.compareSync(password, user.password);
             if(!isValid) return done(null, false);
-            return (done(null, false)); // success
+            return (done(null, user)); // success
         } catch (error) {
              console.log(error);
              return done(error, false);
