@@ -22,3 +22,7 @@ Estratégias do passport para autenticação com nome de usuário e senha.
 # Express-session
 Quando o cliente faz uma solicitação de login no servidor, o servidor criará uma sessão e armazenará 
 no lado do servidor. Quando o servidor responde ao cliente, ele envia um cookie.
+
+# Mysql 2
+
+npm install mysql2
